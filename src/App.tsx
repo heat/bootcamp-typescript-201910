@@ -8,10 +8,6 @@ const App: React.FC = () => {
   
   const [v, changeV ] = useState(rnd.int(0, 10000));
 
-  const randomizeNewCoffee = () => {
-    changeV(rnd.int(0, 1000));
-  };
-
   return (
     <section className="hero is-success is-fullheight">
       <div className="hero-head">
@@ -37,7 +33,7 @@ const App: React.FC = () => {
       </div>
       <div className="hero-foot has-background-white">
         <div className="container has-text-centered" >
-          <FancyButton onAction={() => randomizeNewCoffee() }></FancyButton>
+          <FancyButton onAction={() => changeV(rnd.int(0, 1000)) } text="ALEATORIO" />
         </div>
       </div>
     </section>
