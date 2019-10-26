@@ -2,11 +2,19 @@ import React, { useEffect, useState } from 'react';
 import './App.scss';
 import rnd from 'random';
 
+import axios from 'axios';
+
 import { FancyButton } from './components/fancy-button';
 
 const App: React.FC = () => {
   
-  const [v, changeV ] = useState(rnd.int(0, 10000));
+  const [v, changeV ] = useState('https://coffee.alexflipnote.dev/random');
+
+  const coffeeRand = async () => {
+    const res = await axios.get<CoffeeShop.CoffeeApiResponse>('http://localhost:3000/random.json');
+    const newcoffee = res.data;
+    changeV(newcoffee.file);
+  };
 
   return (
     <section className="hero is-success is-fullheight">
@@ -26,14 +34,14 @@ const App: React.FC = () => {
           <div className="columns">
             <div className="column is-8 is-offset-2">
 
-              <img src={`https://coffee.alexflipnote.dev/random?v=${v}`} alt="café" className="image coffee" ></img>
+              <img src={v} alt="café" className="image coffee" ></img>
             </div>
           </div>
         </div>
       </div>
       <div className="hero-foot has-background-white">
         <div className="container has-text-centered" >
-          <FancyButton onAction={() => changeV(rnd.int(0, 1000)) } text="ALEATORIO" />
+          <FancyButton onAction={() => coffeeRand() } text="ALEATORIO" />
         </div>
       </div>
     </section>
