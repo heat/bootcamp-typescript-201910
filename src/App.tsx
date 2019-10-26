@@ -6,14 +6,30 @@ import axios from 'axios';
 
 import { FancyButton } from './components/fancy-button';
 
+function requestCheck( arg: any): arg is CoffeeShop.CoffeeApiResponse {
+  if (!arg) {
+    return false;
+  }
+  if (arg.file) {
+    return true;
+  }
+  return false;
+}
 const App: React.FC = () => {
   
   const [v, changeV ] = useState('https://coffee.alexflipnote.dev/random');
 
   const coffeeRand = async () => {
-    const res = await axios.get<CoffeeShop.CoffeeApiResponse>('http://localhost:3000/random.json');
+    const res = await axios.get<CoffeeShop.CoffeeApiResponse | {} | null>('http://localhost:3000/random.json');
     const newcoffee = res.data;
-    changeV(newcoffee.file);
+
+    if (requestCheck(newcoffee)) {
+
+      changeV(newcoffee.file);
+    } else {
+      
+      throw new Error(`${res.statusText} - falha na requisicao`);
+    }
   };
 
   return (

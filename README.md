@@ -59,3 +59,25 @@ Resolver o problema do cached a imagem. Instalacão de uma biblioteca e seu tipo
 Usando um fancy button criado em javascript. Use dos hook para ilustrar
 
 ## setp-2.bugfix
+
+Não foi possivel verificar a correta assinatura então tivemos que corrigir
+
+## step-2.refactor
+
+Ao alterar o nome do arquivo mostrar os problemas de compilacao
+Adicionar o campo text para o botao (mostrar opcional)
+
+## step-3
+
+Adicionar o axios (ja vem com @types). faz request para a api coffe 
+- tipos de retorno de requisicao
+- proxy
+- namespace
+
+## step-3.refactor
+
+- cuidado com compilacao x execucao
+- uso da interseccao
+- try catch
+- await quando nao se trata de promise (exemplo)
+- uso de state
