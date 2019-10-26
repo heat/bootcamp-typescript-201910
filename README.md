@@ -58,3 +58,4 @@ Resolver o problema do cached a imagem. Instalacão de uma biblioteca e seu tipo
 
 Usando um fancy button criado em javascript. Use dos hook para ilustrar
 
+## setp-2.bugfix

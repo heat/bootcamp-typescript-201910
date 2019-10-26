@@ -37,7 +37,7 @@ const App: React.FC = () => {
       </div>
       <div className="hero-foot has-background-white">
         <div className="container has-text-centered" >
-          <FancyButton onClick={() => randomizeNewCoffee() }></FancyButton>
+          <FancyButton onAction={() => randomizeNewCoffee() }></FancyButton>
         </div>
       </div>
     </section>
