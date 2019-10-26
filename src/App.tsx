@@ -5,63 +5,61 @@ import rnd from 'random';
 import axios from 'axios';
 
 import { FancyButton } from './components/fancy-button';
+import CoffeeImage from './components/coffe-image';
+import { connect } from 'react-redux';
+import { Dispatch, AnyAction } from 'redux';
+import { randomCoffeeAction } from './store/actions';
+import { ThunkDispatch } from 'redux-thunk';
 
-function requestCheck( arg: any): arg is CoffeeShop.CoffeeApiResponse {
-  if (!arg) {
-    return false;
-  }
-  if (arg.file) {
-    return true;
-  }
-  return false;
+
+type AppProps = {
+  onRandomize: () => void;
 }
-const App: React.FC = () => {
-  
-  const [v, changeV ] = useState('https://coffee.alexflipnote.dev/random');
+class App extends React.Component<AppProps> {
 
-  const coffeeRand = async () => {
-    const res = await axios.get<CoffeeShop.CoffeeApiResponse | {} | null>('http://localhost:3000/random.json');
-    const newcoffee = res.data;
+  render() {
+    const rnd = this.props.onRandomize;
 
-    if (requestCheck(newcoffee)) {
-
-      changeV(newcoffee.file);
-    } else {
-      
-      throw new Error(`${res.statusText} - falha na requisicao`);
-    }
-  };
-
-  return (
-    <section className="hero is-success is-fullheight">
-      <div className="hero-head">
-        <nav className="navbar">
+    return (
+      <section className="hero is-success is-fullheight">
+        <div className="hero-head">
+          <nav className="navbar">
+            <div className="container">
+              <div className="navbar-brand">
+                <div className="navbar-item">
+                  <img src="https://i.imgur.com/rw7iRFF.png" alt="Logo" />
+                </div>
+              </div>
+            </div>
+          </nav>
+        </div>
+        <div className="hero-body">
           <div className="container">
-            <div className="navbar-brand">
-              <div className="navbar-item">
-                <img src="https://i.imgur.com/rw7iRFF.png" alt="Logo" />
+            <div className="columns">
+              <div className="column is-8 is-offset-2">
+                <CoffeeImage />
               </div>
             </div>
           </div>
-        </nav>
-      </div>
-      <div className="hero-body">
-        <div className="container">
-          <div className="columns">
-            <div className="column is-8 is-offset-2">
-
-              <img src={v} alt="café" className="image coffee" ></img>
-            </div>
+        </div>
+        <div className="hero-foot has-background-white">
+          <div className="container has-text-centered" >
+            <FancyButton onAction={() => Promise.resolve(rnd()) } text="ALEATORIO" />
           </div>
         </div>
-      </div>
-      <div className="hero-foot has-background-white">
-        <div className="container has-text-centered" >
-          <FancyButton onAction={() => coffeeRand() } text="ALEATORIO" />
-        </div>
-      </div>
-    </section>
-  );
+      </section>
+    );
+  }
 }
 
-export default App;
+
+const mapDispatchToProps = (dispatch: any) => {
+
+  return {
+    onRandomize: () => dispatch(randomCoffeeAction()),
+  }
+}
+
+const AppContainer = connect(() => {}, mapDispatchToProps)(App);
+
+export default AppContainer;
