@@ -1,7 +1,9 @@
 import React from 'react';
 import './App.scss';
+import rnd from 'random';
 
 const App: React.FC = () => {
+  const v = rnd.int(0, 10000);
   return (
     <section className="hero is-success is-fullheight">
       <div className="hero-head">
@@ -20,7 +22,7 @@ const App: React.FC = () => {
           <div className="columns">
             <div className="column is-8 is-offset-2">
 
-              <img src="https://coffee.alexflipnote.dev/random" alt="café" className="image coffee" ></img>
+              <img src={`https://coffee.alexflipnote.dev/random?v=${v}`} alt="café" className="image coffee" ></img>
             </div>
           </div>
         </div>
