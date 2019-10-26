@@ -1,9 +1,17 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.scss';
 import rnd from 'random';
 
+import { FancyButton } from './components/fancy-button';
+
 const App: React.FC = () => {
-  const v = rnd.int(0, 10000);
+  
+  const [v, changeV ] = useState(rnd.int(0, 10000));
+
+  const randomizeNewCoffee = () => {
+    changeV(rnd.int(0, 1000));
+  };
+
   return (
     <section className="hero is-success is-fullheight">
       <div className="hero-head">
@@ -29,7 +37,7 @@ const App: React.FC = () => {
       </div>
       <div className="hero-foot has-background-white">
         <div className="container has-text-centered" >
-            <button className="button"> RANDOMIZAR </button>
+          <FancyButton onClick={() => randomizeNewCoffee() }></FancyButton>
         </div>
       </div>
     </section>

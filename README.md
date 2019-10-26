@@ -54,3 +54,7 @@ Resolver o problema do cached a imagem. Instalacão de uma biblioteca e seu tipo
 +  <img src={`https://coffee.alexflipnote.dev/random?v=${v}`} alt="café" className="image coffee" ></img>
 ```
 
+## step-2
+
+Usando um fancy button criado em javascript. Use dos hook para ilustrar
+
