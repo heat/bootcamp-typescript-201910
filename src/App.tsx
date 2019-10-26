@@ -1,25 +1,36 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.scss';
 
 const App: React.FC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <section className="hero is-success is-fullheight">
+      <div className="hero-head">
+        <nav className="navbar">
+          <div className="container">
+            <div className="navbar-brand">
+              <div className="navbar-item">
+                <img src="https://i.imgur.com/rw7iRFF.png" alt="Logo" />
+              </div>
+            </div>
+          </div>
+        </nav>
+      </div>
+      <div className="hero-body">
+        <div className="container">
+          <div className="columns">
+            <div className="column is-8 is-offset-2">
+
+              <img src="https://coffee.alexflipnote.dev/random" alt="café" className="image coffee" ></img>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="hero-foot has-background-white">
+        <div className="container has-text-centered" >
+            <button className="button"> RANDOMIZAR </button>
+        </div>
+      </div>
+    </section>
   );
 }
 
